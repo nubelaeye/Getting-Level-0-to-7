@@ -1,0 +1,180 @@
+# Hey there welcome to the Lecture no. 02
+# Let's get started without wasting much energy/changes...
+
+# -> del keyword.. - Used to delete object properties or object itself.
+# How?? -> 1. Object property deletion -> del s1.name
+# 2. object deletion -> del s1
+# example..
+class student:
+    def __init__(self, name):
+        self.name = name
+
+s1 = student("Black Hole")
+print(s1.name) # Black Hole
+# del s1.name
+# print(s1.name) # AttributeError: 'student' object has no attribute 'name'
+
+# -> Private attributes & methods..
+# Private attributes & methods are meant to be used only within the class are not accessible
+# from outside the class.
+
+# How to make it private? - Put 2 times underscore(__) before the object attribute and 
+# methods.. example
+class Account:
+    # Now if we want to make the pass to be hidden.. we'll just put(__) before acc_pass in
+    # self.acc_pass -> self.__acc_pass
+    def __init__(self, acc_no, acc_pass):
+        self.acc_no = acc_no
+        self.__acc_pass = acc_pass
+    
+    def Hidden_VisibleHere(self):
+        return self.__acc_pass
+    
+    # Forming an attribute private...
+    __prv = "Hello"
+    # Forming an method private..
+    def __hello(self):
+        print("Hello World!")
+
+Person1 = Account(123,"ABC")
+print(Person1.acc_no) # 123
+#print(Person1.__acc_pass)# AttributeError: 'Account' object has no attribute '__acc_pass'    
+# But we can still print it by using above Hidden_VisibleHere()
+print(Person1.Hidden_VisibleHere()) # ABC
+
+
+# 3. (Inheritance)..
+# When one class(child or derived) derives the properties & methods of another class(parent/
+# base).
+
+class Parent:
+    Age = 34    
+    def __init__(self, name):
+        self.name = name
+    
+class Child(Parent):
+    def BeingChild(self):
+        return "I am a child using Parent Class.."
+
+GrandChild = Child("Jason")
+print(GrandChild.Age)
+print(GrandChild.name)
+print(GrandChild.BeingChild())
+
+# => Types Of Inheritance..
+# 1. Single Inheritance - means when there is single parent class and single child class
+# Above example is an example of Single Inheritance
+
+# 2. Multi-level Inheritance - means when the properties are inherited by one Parent & one
+# by Grand Parent.. ex- 
+# Visual: A(1st Parent) -> B(A) [2nd Parent] -> C(B) [Child or 3rd Parent]; A->B(A)->C(B,A).
+
+class Car:
+    @staticmethod
+    def start():
+        print("Car Started")
+    @staticmethod
+    def stop():
+        print("Car stopped")
+
+class ToyotaCar(Car):
+    def __init__(self,brand):
+        self.brand = brand
+
+class Fortuner(ToyotaCar):
+    def __init__(self, type):
+        self.type = type
+
+car1 = Fortuner("diesel")
+car1.start()    
+
+# 3. Multiple-level Inheritance - When a child class inherites multiple parent classes..
+# Visual -> let A & C be two individual parent classes and B as child class then...
+# Multiple-level-Inheritance would look like: [A(Parent) -> B(child) <- C(Parent)] 
+# Here both A and C has no relation of Parent or Child but they have relation with Child B.
+# Chlid is only one but parents are two or more..
+# NOTE - Those all parents should be INDIVIDUAL Relation they can't be child of someone..
+# example..
+
+class UniversalChild(Car,Parent):
+    name = "Greatest Of All Time!"
+
+hu = UniversalChild("Neon") # NOTE - we've to also full-fill all parents requirements..
+print(hu.Age)
+
+# -> Super Method() : Is used to access methods of the parent class.. 
+
+class Car2:
+    def __init__(self,type):
+        self.type = type
+    
+    @staticmethod
+    def start():
+        print("Car has being started..")
+    
+    @staticmethod
+    def stop():
+        print("Car has being stopped..")
+    
+class Lamborghini(Car2):
+    def __init__(self, name, type):
+        super().__init__(type)
+        self.name = name
+        super().start()
+
+Sports_Car = Lamborghini("Aventador","SVJ")
+print(Sports_Car.type)
+
+# -> Classmethod : (2nd) decorator allows us to get the actuall data/attributes of parent
+# class.. @classmethod
+
+a = 9
+b = 10
+print(a.__add__(b))
+
+# Homework(1)..
+# Q - Define a circle class to create a circle with radius r using the constructor.
+# Define an Area method() of the class which calculates the area of the circle.
+# Define a Perimeter() method of the class which allows you to calculate the perimeter of
+# the circle...
+
+# Answer..
+class Circle:
+    def GetRadius(self, r):
+        self.radius = r
+        return self.radius
+    
+    def Peri(self):
+        return ((2*3.14) * self.radius)
+    
+    def Area(self):
+        return (3.14 * (self.radius * self.radius))
+
+c1 = Circle()
+print(c1.GetRadius(4))
+print(c1.Area())
+print(c1.Peri())
+
+# Question 2
+# Define a Employee class with attributes role, department & salary. This class has also has
+# showDetails() method.
+# Create an Engineer class that inherits properties from Employee & 
+
+# Answer:-
+class Employee:
+    def __init__(self, role, department, salary):
+        self.role = role
+        self.department = department
+        self.salary = salary
+    
+    def showDetails(self):
+        print(self.role)
+        print(self.department)
+        print(self.salary)
+    
+class Engineer(Employee):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+# Okay.. So, the lecture ends here
