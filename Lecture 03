@@ -1,0 +1,120 @@
+# 1. Type hints — what are they?
+# Type-Hints: As annotations that tell Python (and humans) what type of data you expect a 
+# variable, parameter, or return value to contain.
+
+# Example without type hints:
+def add(a, b):
+    return a + b
+
+# With type hints:
+def add(a : int, b: int) -> int:
+    return a + b
+
+# NOTE - both a and b should be of same datatype!!
+
+# Important:
+# Type hints don't normally force Python to enforce the type at runtime.
+def add(a: int, b: int) -> int:
+    return a + b
+
+print(add("Hello", "World")) #OUTPUT - HelloWorld
+
+# The int annotations are primarily information for you, your editor/IDE, 
+# static type checkers, and other developers.
+# means works just kind of - comment or extra info for the reader or programmer
+
+# 2. Basic syntax
+# Variables
+name : str = "Pranjal"
+age: int = 23
+height : float = 173.5
+is_student : bool = True
+
+# (IMP) NOTE - You can also write: 
+name: str
+age: int
+# print(name) # OUTPUT - name is not defined...
+# without assigning values immediately.
+
+# Function parameters
+def greet(name:str, last_name:str) -> str:
+    print(name+last_name)
+
+# The arrow(->) means: “This function is expected to return an int.”
+
+# 3. The most important patterns you'll use
+
+number: list[int] = [1,2,3,4,5,6]
+# Meaning: A list containing integers.
+
+names: list[str] = ["Alex", "John", "Sam"]
+print(names)
+
+# Dictionary
+student: dict[str,int] = {"maths":32, "physics":33}
+# meaning -> key = str and value = int
+
+# Tuple
+point : tuple[int, int] = (23,45)
+
+# Set
+uniqu_no : set[str, str] = {"MOON x Dino(*-*)!","Cosmic x Intruder(*-*)!"}
+
+# (IMP) NOTE - Syntax:-
+# variable :datatypeA[datatype1,datatype2,datatype3] = [] or () or {} respectively datatypeA
+
+# 4. Multiple possible types
+# Suppose a funciton can accept either an integer or a string.
+def display(a : int | str) -> None:
+    print(a)
+    
+# None means the function isn't expected to return a value.
+
+# 5. Optional values
+# Suppose a user's age may or may not be provided.
+
+age: int | None = None
+
+# age can be an int OR age can be None
+
+# 6. Type hints with your own classes
+class Project:
+    def __init__(self, a:int, b:str):
+        self.number1 = a
+        self.name = b
+    
+def include_upper(making_Object:Project):
+        return f"You entered no.{making_Object.number1}"
+
+# You're telling Python tooling:
+# student is expected to be a Student object.
+# And this connects OOP + Type Hints beautifully.
+
+# 7. Type aliases
+
+# (IMPORTANT) - One of the best use case...
+dict[str, list[int]] # simple basic structure..
+StudentMarks = dict[str, list[int]] # Making a variable
+marks: StudentMarks # Now using the above basic structure which is referred as a varible.
+# This makes larger programs much easier to read..
+
+# 8. Why should YOU learn Type Hints?
+
+# --> You can understand the function's expected input/output almost instantly. <--
+def get_user(user_id: int) -> dict[str, str | int]:
+    pass
+
+# That's one reason professional Python codebases use them heavily.
+
+# 10. A very important distinction
+
+# Don't think:
+# Type hint = type checking
+# They're related, but different.
+
+# Type hint
+age: int = "hello"
+# In Type hint -> Python doesn't automatically stop you!!
+
+# Okay, so type hints topic finsihed Successfully!!
+# Best of the Luck!!!
