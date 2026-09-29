@@ -4,7 +4,7 @@
 # -> del keyword.. - Used to delete object properties or object itself.
 # How?? -> 1. Object property deletion -> del s1.name
 # 2. object deletion -> del s1
-# example..
+# example.. 
 class student:
     def __init__(self, name):
         self.name = name
