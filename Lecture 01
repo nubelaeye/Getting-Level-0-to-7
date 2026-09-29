@@ -5,7 +5,7 @@
 # a = 0
 # b = 2
 # sum = a+b 
-# print(sum)
+# print(sum) 
 
 # 2.(Function method) - It decreases the redundancy and increasing the reusuability of program
 # ex -
